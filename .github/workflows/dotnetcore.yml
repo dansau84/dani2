@@ -15,3 +15,8 @@ jobs:
         dotnet-version: 2.2.108
     - name: Build with dotnet
       run: dotnet build --configuration Release
+    - name : a
+      uses: actions/upload-artifact@v1
+      with: 
+          name: dani2
+          path: dani.sln
