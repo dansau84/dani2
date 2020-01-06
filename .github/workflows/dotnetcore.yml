@@ -19,4 +19,4 @@ jobs:
       uses: actions/upload-artifact@v1
       with: 
           name: dani2
-          path: /Program.cs
+          path: dani/Program.cs
