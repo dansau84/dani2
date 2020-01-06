@@ -15,7 +15,7 @@ jobs:
       with:
         dotnet-version: 2.2.108
     - name: sdotnet
-      run: dir cd dani 
+      run: dir  
     - name: Build with dotnet
       run: dotnet build --configuration Release
     - name : a
