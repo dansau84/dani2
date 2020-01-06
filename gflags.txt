@@ -1,0 +1,40 @@
+https://blogs.msdn.microsoft.com/webdav_101/2010/06/22/detecting-heap-corruption-using-gflags-and-dumps/
+
+1) set up gflags:
+to install it: https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/gflags 
+
+c:\program files\debugging tools for windows <x86>> gflags.exe /i  app.exe  *ust *hpa
+*hpa : enable page heap
+*ust : user mode stack trace
+
+or better..
+
+gflags.exe -p /enable w3wp.exe /full
+and then
+gflags.exe -p /disable w3wp.exe
+
+
+2) and then take dump:
+
+ Procdump -e -ma -x C:\Program Files\Microsoft Office\Office12\outlook.exe
+or  procdump -ma -e 1 -f "whatevertheerrorishere" PID   ; procdump -ma -64 -n 5 -e 1 -f AccessViolation <PID> 
+or procdump.exe  -ma -s 15 -n 3 PIDname c:\dump
+or Procdump.exe –s 5 –n 3 –c 80 –ma <Process_ID_From_Step_2>    // for high cpu%
+
+process in azure : https://blogs.msdn.microsoft.com/jpsanders/2017/02/02/how-to-get-a-full-memory-dump-in-azure-app-services/
+Procdump -accepteula -e 1 -f pool -ma <PID> 
+BUT if that is for performance issues (cpu,ram,etc) use this azure technic: https://github.com/projectkudu/kudu/wiki/Process-Threads-list-and-minidump-gcdump-diagsession
+
+-----------
+
+You can use the following command line to see if page heap checking is enabled:    
+
+gflags.exe –p
+
+To see a list of commands which
+
+gflags.exe –h   
+
+----------
+da poi(esp)
+dd poi(esp)
