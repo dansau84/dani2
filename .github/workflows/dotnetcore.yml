@@ -5,7 +5,7 @@ on: [push]
 jobs:
   build:
 
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
     
@@ -17,7 +17,9 @@ jobs:
     - name: sdotnet
       run: dir  
     - name: Build with dotnet
-      run: dotnet build --configuration Release
+      run: dotnet build ./dani --configuration Release
+    - name : dotnet publish
+      run: dotnet publish ./dani  -c Release -o mydani
     - name : a
       uses: actions/upload-artifact@v1
       with: 
